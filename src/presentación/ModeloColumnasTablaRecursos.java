@@ -1,4 +1,4 @@
-package presentación;
+package presentaciÃ³n;
 
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
@@ -12,8 +12,8 @@ public class ModeloColumnasTablaRecursos extends DefaultTableColumnModel{
 		this.trazador = trazador;
 		this.addColumn(crearColumna("ID",0,50));
 		this.addColumn(crearColumna("Nombre",1,100));
-		this.addColumn(crearColumna("Descripción",2,200));
-		this.addColumn(crearColumna("Ubicación",3,100));
+		this.addColumn(crearColumna("Descripciï¿½n",2,200));
+		this.addColumn(crearColumna("Ubicaciï¿½n",3,100));
 		this.addColumn(crearColumna("Responsable",4,100));
 		this.addColumn(crearColumna("Estado",5,50));
 	}

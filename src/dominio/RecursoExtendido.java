@@ -10,8 +10,8 @@ public class RecursoExtendido extends Recurso {
 	 
 	String nombreResponsable;
 	Estado estado;
-	public RecursoExtendido(int id, String nombre, String descripción, String ubicación, int idResponsable) throws Exception {
-		super(id, nombre, descripción, ubicación, idResponsable);
+	public RecursoExtendido(int id, String nombre, String descripcion, String ubicacion, int idResponsable) throws Exception {
+		super(id, nombre, descripcion, ubicacion, idResponsable);
 		nombreResponsable = DAOPersonas.buscarPorId(idResponsable).getNombre();
 		estado = identificarEstadoActualRecurso(id);
 	}

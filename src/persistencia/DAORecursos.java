@@ -51,7 +51,7 @@ public class DAORecursos
       return null;
     }
   }
-  public static void InsertarRecurso ( String nombre, String ubicación, String descripción, int dniResponsable ){
+  public static void InsertarRecurso ( String nombre, String ubicacion, String descripcion, int dniResponsable ){
 	  
 	  Statement stmt;
 	  int result;
@@ -60,7 +60,7 @@ public class DAORecursos
 	    {
 	      stmt=PoolConexiones.getConexion().createStatement();
 	      strSQL="INSERT INTO RECURSO "+
-	             " VALUES (0,'"+nombre+"','"+descripción+"','"+ubicación+"',"+dniResponsable+")";
+	             " VALUES (0,'"+nombre+"','"+descripcion+"','"+ubicacion+"',"+dniResponsable+")";
 	      result = stmt.executeUpdate(strSQL);
 	      
 	    
@@ -78,8 +78,8 @@ public class DAORecursos
 	             " WHERE idRecurso = " +id;
 	    result = stmt.executeUpdate(strSQL);
 	}
-	public static void modificarRecurso(int id, String nombre, String ubicación, 
-			String descripción, int idResponsable) throws SQLException {
+	public static void modificarRecurso(int id, String nombre, String ubicacion, 
+			String descripcion, int idResponsable) throws SQLException {
 		
 		Statement stmt;
 		int result;
@@ -87,8 +87,8 @@ public class DAORecursos
 		stmt=PoolConexiones.getConexion().createStatement();
 		strSQL="UPDATE  RECURSO "+
 		       "SET NOMBRE = '"+nombre+"',"+
-				"DESCRIPCION='"+descripción+"',"+
-		        "UBICACION='"+ubicación+"',"+
+				"DESCRIPCION='"+descripcion+"',"+
+		        "UBICACION='"+ubicacion+"',"+
 				"DNIRESPONSABLE = " + idResponsable+
 	           " WHERE idRecurso = " +id ;
 	             

@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 
 import persistencia.DAORecursos;
 import persistencia.DAOReservas;
-import presentación.ModeloColumnasTablaRecursos;
+import presentaciÃ³n.ModeloColumnasTablaRecursos;
 
 public class ModeloTablaRecursos extends AbstractTableModel {
 	
@@ -77,8 +77,8 @@ public class ModeloTablaRecursos extends AbstractTableModel {
 		switch (columna){
 		case 0: return new Integer (rec.getId());
 		case 1: return rec.getNombre();
-		case 2: return rec.getDescripción();
-		case 3: return rec.getUbicación();
+		case 2: return rec.getDescripcion();
+		case 3: return rec.getUbicacion();
 		case 4: return rec.getNombreResponsable();
 		case 5: return rec.getEstado();
 		}

@@ -1,4 +1,4 @@
-package presentación;
+package presentaciÃ³n;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -88,7 +88,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 	}
 
 	private void crearAcciones() {
-		accAdd = new MiAccion ("Añadir", new ImageIcon("iconos/edit_add.png"), "Añadir", KeyEvent.VK_A);
+		accAdd = new MiAccion ("Aï¿½adir", new ImageIcon("iconos/edit_add.png"), "Aï¿½adir", KeyEvent.VK_A);
 		accDelete = new MiAccion ("Borrar",new ImageIcon("iconos/edit_remove.png"),"Borrar",KeyEvent.VK_D);
 		accEdit = new MiAccion ("Editar",new ImageIcon("iconos/edit.png"),"Editar",KeyEvent.VK_E);
 		accTake = new MiAccion ("Llevar",new ImageIcon("iconos/agt_login.png"),"Llevar",KeyEvent.VK_P);
@@ -210,8 +210,8 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 				BorderFactory.createEmptyBorder(10,10,0,10),
 				BorderFactory.createLoweredBevelBorder()));
 		panel.add(crearCampo("Nombre",recurso.getNombre()));
-		panel.add(crearCampo("Descripción",recurso.getDescripción()));
-		panel.add(crearCampo("Ubicación",recurso.getUbicación()));
+		panel.add(crearCampo("Descripciï¿½n",recurso.getDescripcion()));
+		panel.add(crearCampo("Ubicaciï¿½n",recurso.getUbicacion()));
 		panel.add(crearCampo("Responsable",recurso.getNombreResponsable()));
 		return panel;
 	}
@@ -242,15 +242,15 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			switch (e.getActionCommand()){
-			case "Añadir": tratarOpciónAñadir(); break;
-			case "Borrar": tratarOpciónBorrar(); break;
-			case "Editar": tratarOpciónEditar();break;
+			case "Aï¿½adir": tratarOpcionAÃ±adir(); break;
+			case "Borrar": tratarOpcionBorrar(); break;
+			case "Editar": tratarOpcionEditar();break;
 			case "Llevar": System.out.println("Ha elegido Llevar");break;
 			}
 	
 		}
 
-		private void tratarOpciónEditar() {
+		private void tratarOpcionEditar() {
 			int index = vTabla.getSelectedRow() ;
 			Reserva reserva = tabla.getReservaAt(index);
 			DialogoDatosReserva dialogo = new DialogoDatosReserva (DialogReserva.this,"Modificar Reserva", Sesion.getInstance().getUsuario(),
@@ -266,7 +266,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		
 		}
 
-		private void tratarOpciónBorrar() {
+		private void tratarOpcionBorrar() {
 			Reserva reserva = tabla.getReservaAt(vTabla.getSelectedRow());
 			   int opcion =JOptionPane.showConfirmDialog(DialogReserva.this, "Vas a eliminar la reserva de: "+recurso.getNombre(),
 					   "Eliminar reserva", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -284,8 +284,8 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		
 		}
 
-		private void tratarOpciónAñadir() {
-			DialogoDatosReserva dialogo = new DialogoDatosReserva (DialogReserva.this,"Añadir nueva reserva",Sesion.getInstance().getUsuario(), recurso, true);
+		private void tratarOpcionAÃ±adir() {
+			DialogoDatosReserva dialogo = new DialogoDatosReserva (DialogReserva.this,"Aï¿½adir nueva reserva",Sesion.getInstance().getUsuario(), recurso, true);
 			if (dialogo.isCambioRealizado()){
 				try {
 					tabla.actualizar();

@@ -1,4 +1,4 @@
-package presentación;
+package presentaciÃ³n;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -112,7 +112,7 @@ public class FormLogin extends JFrame implements ActionListener
         this.dispose();
       }
       else {
-    	  JOptionPane.showMessageDialog(this,"Identificación no válida", "Error de identificación",
+    	  JOptionPane.showMessageDialog(this,"Identificaciï¿½n no vï¿½lida", "Error de identificaciï¿½n",
     			    JOptionPane.ERROR_MESSAGE);
       }
     }

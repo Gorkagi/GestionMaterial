@@ -12,7 +12,7 @@ class PoolConexiones
 	final static String SGBDURL = "jdbc:mysql://localhost:3306/material";
 	private static Connection instance;
  
-  /* versión basada en JODBC
+  /* versiï¿½n basada en JODBC
    * 
    *
   public static Connection getConexion() throws Exception
@@ -41,7 +41,7 @@ class PoolConexiones
 	  if (instance == null){
 	    Properties connectionProps = new Properties();
 	    connectionProps.put("user", "root");
-	    //connectionProps.put("password", "root");
+	    connectionProps.put("password", "123");
 
 	   instance = DriverManager.getConnection(SGBDURL, connectionProps);
 	  }

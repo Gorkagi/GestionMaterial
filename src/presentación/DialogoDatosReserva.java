@@ -1,4 +1,4 @@
-package presentación;
+package presentaciÃ³n;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -199,7 +199,7 @@ public class DialogoDatosReserva extends JDialog implements ActionListener,Prope
 						
 						DAOReservas.insertarReserva(new Reserva(0,this.persona,this.recurso, 
 								this.desde, this.hasta, Integer.valueOf(txUrgencia.getText())));
-						JOptionPane.showMessageDialog(this, "Reserva añadida",
+						JOptionPane.showMessageDialog(this, "Reserva aï¿½adida",
 								"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 				
 					}

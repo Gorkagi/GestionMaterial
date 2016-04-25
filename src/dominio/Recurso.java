@@ -4,28 +4,28 @@ public class Recurso
 {
   protected int id;
   protected String nombre;
-  protected String descripción;
-  protected String ubicación;
+  protected String descripcion;
+  protected String ubicacion;
   protected int idResponsable;
   
-  public Recurso(int id, String nombre, String descripción,String ubicación, int idResponsable)
+  public Recurso(int id, String nombre, String descripcion,String ubicacion, int idResponsable)
   {
-    this.ubicación=ubicación;
+    this.ubicacion=ubicacion;
     this.nombre=nombre;
-    this.descripción=descripción;
+    this.descripcion=descripcion;
     this.id=id;
     this.idResponsable = idResponsable;
   }
   public Recurso (Recurso r){
 	  this.id = r.id;
 	  this.nombre = r.nombre;
-	  this.descripción = r.descripción;
-	  this.ubicación = r.ubicación;
+	  this.descripcion = r.descripcion;
+	  this.ubicacion = r.ubicacion;
 	  this.idResponsable = r.idResponsable;
   }
   public String getNombre(){return nombre;}
-  public String getDescripción(){return descripción;}
+  public String getDescripcion(){return descripcion;}
   public int getId(){return id;}
-  public String getUbicación(){return ubicación;}
+  public String getUbicacion(){return ubicacion;}
   public int getIdResponsable(){return idResponsable;}
 }

@@ -1,4 +1,4 @@
-package presentación;
+package presentaciÃ³n;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -29,7 +29,7 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 	
 	final static String  TITULO = "Crear nuevo recurso";
 	JComboBox<String> comboResponsable;
-	JTextField txNombre,txDescripción,txUbicación,txResponsable;
+	JTextField txNombre,txDescripcion,txUbicacion,txResponsable;
 	ArrayList<Persona> listaPersonas= null; 
 	boolean cambioRealizado = false;
 	RecursoExtendido recurso = null;
@@ -53,8 +53,8 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 		this.recurso = recurso;
 		crearVentana();
 		txNombre.setText(recurso.getNombre());
-		txDescripción.setText(recurso.getDescripción());
-		txUbicación.setText(recurso.getUbicación());
+		txDescripcion.setText(recurso.getDescripcion());
+		txUbicacion.setText(recurso.getUbicacion());
 		for (Persona p :listaPersonas){
 			if (p.getId() ==recurso.getIdResponsable()){
 				comboResponsable.setSelectedIndex(listaPersonas.indexOf(p));
@@ -93,8 +93,8 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 		String nombres [];
 		
 		panel.add(txNombre = crearCampo("Nombre"));
-		panel.add(txDescripción = crearCampo("Descripción"));
-		panel.add(txUbicación = crearCampo("Ubicación"));
+		panel.add(txDescripcion = crearCampo("Descripciï¿½n"));
+		panel.add(txUbicacion = crearCampo("Ubicaciï¿½n"));
 		try {
 			listaPersonas = DAOPersonas.obtenerPersonas();
 		} catch (Exception e) {
@@ -129,8 +129,8 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 								"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
 					}else if (editando){
 						try {
-							DAORecursos.modificarRecurso(recurso.getId(),txNombre.getText(), txUbicación.getText(),
-									txDescripción.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId());
+							DAORecursos.modificarRecurso(recurso.getId(),txNombre.getText(), txUbicacion.getText(),
+									txDescripcion.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId());
 						} catch (SQLException e1) {
 							
 							e1.printStackTrace();
@@ -138,9 +138,9 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 						JOptionPane.showMessageDialog(this, "Recurso actualizado",
 								"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 					}else{
-						DAORecursos.InsertarRecurso(txNombre.getText(), txUbicación.getText(),
-								txDescripción.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId());
-						JOptionPane.showMessageDialog(this, "Recurso añadido",
+						DAORecursos.InsertarRecurso(txNombre.getText(), txUbicacion.getText(),
+								txDescripcion.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId());
+						JOptionPane.showMessageDialog(this, "Recurso aï¿½adido",
 								"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 					}
 					this.cambioRealizado = true;
@@ -155,7 +155,7 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 
 	private boolean camposIncompletos() {
 		
-		return txNombre.getText().length()==0 ||txUbicación.getText().length()==0 || txDescripción.getText().length()==0;
+		return txNombre.getText().length()==0 ||txUbicacion.getText().length()==0 || txDescripcion.getText().length()==0;
 	}
 
 	public boolean isCambioRealizado() {

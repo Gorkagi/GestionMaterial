@@ -1,4 +1,4 @@
-package presentación;
+package presentaciÃ³n;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -107,7 +107,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 	
 
 	private void crearAcciones() {
-		accAdd = new MiAccion ("Añadir", new ImageIcon("iconos/edit_add.png"), "Añadir", KeyEvent.VK_A);
+		accAdd = new MiAccion ("Aï¿½adir", new ImageIcon("iconos/edit_add.png"), "Aï¿½adir", KeyEvent.VK_A);
 		accDelete = new MiAccion ("Borrar",new ImageIcon("iconos/edit_remove.png"),"Borrar",KeyEvent.VK_D);
 		accEdit = new MiAccion ("Editar",new ImageIcon("iconos/edit.png"),"Editar",KeyEvent.VK_E);
 		accReservar = new MiAccion ("Reservar",new ImageIcon("iconos/month.png"),"Reservar",KeyEvent.VK_R);
@@ -206,16 +206,16 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			switch (e.getActionCommand()){
-			case "Añadir": tratarOpciónAñadir(); break;
-			case "Borrar": tratarOpciónBorrar(); break;
-			case "Editar": tratarOpciónEditar();break;
-			case "Reservar": tratarOpciónReservar();break;
+			case "Aï¿½adir": tratarOpcionAÃ±adir(); break;
+			case "Borrar": tratarOpcionBorrar(); break;
+			case "Editar": tratarOpcionEditar();break;
+			case "Reservar": tratarOpcionReservar();break;
 			case "Llevar": System.out.println("Ha elegido Llevar");break;
 			}
 	
 		}
 
-		private void tratarOpciónReservar() {
+		private void tratarOpcionReservar() {
 			int index = vTabla.getSelectedRow() ;
 			RecursoExtendido recurso = tabla.getRecursoAt(index);
 			DialogReserva dialogo = new DialogReserva (FormRecursos.this,recurso);
@@ -228,7 +228,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 			
 		}
 
-		private void tratarOpciónEditar() {
+		private void tratarOpcionEditar() {
 			int index = vTabla.getSelectedRow() ;
 			RecursoExtendido recurso = tabla.getRecursoAt(index);
 			DialogoRecurso dialogo = new DialogoRecurso (FormRecursos.this,recurso, true);
@@ -242,9 +242,9 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		    }
 		}
 
-		private void tratarOpciónBorrar() {
+		private void tratarOpcionBorrar() {
 			RecursoExtendido recurso = tabla.getRecursoAt(vTabla.getSelectedRow());
-			   int opcion =JOptionPane.showConfirmDialog(FormRecursos.this, "Vas a eliminar el recurso: "+recurso.getNombre()+" de "+ recurso.getUbicación(),
+			   int opcion =JOptionPane.showConfirmDialog(FormRecursos.this, "Vas a eliminar el recurso: "+recurso.getNombre()+" de "+ recurso.getUbicacion(),
 						"Eliminar recurso", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 			   if (opcion == JOptionPane.OK_OPTION){
 				   try{
@@ -259,7 +259,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 			   }
 		}
 
-		private void tratarOpciónAñadir() {
+		private void tratarOpcionAÃ±adir() {
 			DialogoRecurso dialogo = new DialogoRecurso (FormRecursos.this,true);
 			if (dialogo.isCambioRealizado()){
 				   try {
