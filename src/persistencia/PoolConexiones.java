@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 //import java.util.*;
 //import java.io.*;
-
+//
 class PoolConexiones
 {
   //protected static String nombreBBDD="jdbc:odbc:gestionMaterial_01";
