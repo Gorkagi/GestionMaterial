@@ -1,4 +1,4 @@
-package presentaciÃ³n;
+package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -206,7 +206,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			switch (e.getActionCommand()){
-			case "Aï¿½adir": tratarOpcionAÃ±adir(); break;
+			case "Añadir": tratarOpcionAñadir(); break;
 			case "Borrar": tratarOpcionBorrar(); break;
 			case "Editar": tratarOpcionEditar();break;
 			case "Reservar": tratarOpcionReservar();break;
@@ -259,7 +259,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 			   }
 		}
 
-		private void tratarOpcionAÃ±adir() {
+		private void tratarOpcionAñadir() {
 			DialogoRecurso dialogo = new DialogoRecurso (FormRecursos.this,true);
 			if (dialogo.isCambioRealizado()){
 				   try {

@@ -37,24 +37,24 @@ public class DAOPrestamos
     boolean ok=false;
     String strSQL,strFechaInicio,strFechaFin;
     Calendar calendario;
-    int dia,mes,aÃ±o,hora,min;
+    int dia,mes,año,hora,min;
     
     try
     {
       calendario=p.getFechaInicio();
       dia=calendario.get(Calendar.DAY_OF_MONTH);
       mes=calendario.get(Calendar.MONTH)+1;
-      aÃ±o=calendario.get(Calendar.YEAR);
+      año=calendario.get(Calendar.YEAR);
       hora=calendario.get(Calendar.HOUR_OF_DAY);
       min=calendario.get(Calendar.MINUTE);
-      strFechaInicio=aÃ±o+"-"+mes+'-'+dia+' '+hora+':'+min;
+      strFechaInicio=año+"-"+mes+'-'+dia+' '+hora+':'+min;
       calendario=p.getFechaFin();
       dia=calendario.get(Calendar.DAY_OF_MONTH);
       mes=calendario.get(Calendar.MONTH)+1;
-      aÃ±o=calendario.get(Calendar.YEAR);
+      año=calendario.get(Calendar.YEAR);
       hora=calendario.get(Calendar.HOUR_OF_DAY);
       min=calendario.get(Calendar.MINUTE);
-      strFechaFin=aÃ±o+"-"+mes+'-'+dia+' '+hora+':'+min;
+      strFechaFin=año+"-"+mes+'-'+dia+' '+hora+':'+min;
       stmt=PoolConexiones.getConexion().createStatement();
       strSQL="INSERT INTO Prestamo(fechaInicio,fechaFin,idRecurso,dniPrestatario) "+
         "VALUES ('"+strFechaInicio+"','"+strFechaFin+"',"+

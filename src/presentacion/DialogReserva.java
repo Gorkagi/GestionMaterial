@@ -1,4 +1,4 @@
-package presentaciÃ³n;
+package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -242,7 +242,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			switch (e.getActionCommand()){
-			case "Aï¿½adir": tratarOpcionAÃ±adir(); break;
+			case "Aï¿½adir": tratarOpcionAñadir(); break;
 			case "Borrar": tratarOpcionBorrar(); break;
 			case "Editar": tratarOpcionEditar();break;
 			case "Llevar": System.out.println("Ha elegido Llevar");break;
@@ -284,7 +284,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		
 		}
 
-		private void tratarOpcionAÃ±adir() {
+		private void tratarOpcionAñadir() {
 			DialogoDatosReserva dialogo = new DialogoDatosReserva (DialogReserva.this,"Aï¿½adir nueva reserva",Sesion.getInstance().getUsuario(), recurso, true);
 			if (dialogo.isCambioRealizado()){
 				try {

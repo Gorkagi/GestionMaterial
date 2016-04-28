@@ -1,7 +1,7 @@
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import presentación.FormLogin;
+import presentacion.FormLogin;
 
 public class StartClas
 {

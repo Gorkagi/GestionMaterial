@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 
 import persistencia.DAORecursos;
 import persistencia.DAOReservas;
-import presentación.ModeloColumnasTablaReservas;
+import presentacion.ModeloColumnasTablaReservas;
 
 public class ModeloTablaReservas extends AbstractTableModel {
 	
