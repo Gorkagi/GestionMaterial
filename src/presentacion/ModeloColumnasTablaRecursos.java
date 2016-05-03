@@ -12,10 +12,11 @@ public class ModeloColumnasTablaRecursos extends DefaultTableColumnModel{
 		this.trazador = trazador;
 		this.addColumn(crearColumna("ID",0,50));
 		this.addColumn(crearColumna("Nombre",1,100));
-		this.addColumn(crearColumna("Descripci�n",2,200));
-		this.addColumn(crearColumna("Ubicaci�n",3,100));
-		this.addColumn(crearColumna("Responsable",4,100));
-		this.addColumn(crearColumna("Estado",5,50));
+		this.addColumn(crearColumna("Descripcion",2,200));
+		this.addColumn(crearColumna("Tipo",3,150));
+		this.addColumn(crearColumna("Ubicacion",4,100));
+		this.addColumn(crearColumna("Responsable",5,100));
+		this.addColumn(crearColumna("Estado",6,50));
 	}
 
 	private TableColumn crearColumna(String texto, int indice, int ancho) {

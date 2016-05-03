@@ -78,9 +78,10 @@ public class ModeloTablaRecursos extends AbstractTableModel {
 		case 0: return new Integer (rec.getId());
 		case 1: return rec.getNombre();
 		case 2: return rec.getDescripcion();
-		case 3: return rec.getUbicacion();
-		case 4: return rec.getNombreResponsable();
-		case 5: return rec.getEstado();
+		case 3: return rec.getTipo();
+		case 4: return rec.getUbicacion();
+		case 5:	return rec.getNombreResponsable();
+		case 6: return rec.getEstado();
 		}
 		return null;
 	}
