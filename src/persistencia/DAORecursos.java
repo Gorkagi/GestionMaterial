@@ -64,11 +64,11 @@ public class DAORecursos
 
 			tipos = new ArrayList<String>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT descripción"+
+			strSQL="SELECT descripcion"+
 					" FROM categoriaRecurso";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
-				tipos.add(result.getString("descripción"));
+				tipos.add(result.getString("descripcion"));
 			}
 			result.close();
 		} catch (Exception e ){
@@ -84,12 +84,12 @@ public class DAORecursos
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT descripción "+
+			strSQL="SELECT descripcion "+
 					" FROM categoriaRecurso"+
 					" WHERE idCategoriaRecurso="+idCategoriaRecurso;
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			descrip = result.getString("descripción");
+			descrip = result.getString("descripcion");
 			result.close();
 			return descrip;
 
