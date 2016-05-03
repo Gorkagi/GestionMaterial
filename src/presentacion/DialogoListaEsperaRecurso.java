@@ -43,6 +43,7 @@ public class DialogoListaEsperaRecurso extends JDialog implements ListSelectionL
 		this.setContentPane(crearPanelVentana());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
+		this.setResizable(false);
 	}
 	
 	private Container crearPanelVentana() {

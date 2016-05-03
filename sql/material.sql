@@ -31,11 +31,11 @@ INSERT INTO persona VALUES (default,'Xabier','arrasate','xelkorobarrutia',1);
 CREATE TABLE categoriaRecurso
 (
  idCategoriaRecurso INT AUTO_INCREMENT,
- descripción        VARCHAR(64),
+ descripcion        VARCHAR(64),
  CONSTRAINT pk_categoriaRecurso PRIMARY KEY (idCategoriaRecurso)
 );
 
-INSERT INTO categoriaRecurso VALUES (default, 'Uso común');
+INSERT INTO categoriaRecurso VALUES (default, 'Uso comun');
 INSERT INTO categoriaRecurso VALUES (default, 'Especial');
 
 
@@ -52,16 +52,16 @@ CREATE TABLE recurso
  CONSTRAINT fk_recurso_categoriaRecurso FOREIGN KEY (idCategoriaRecurso) REFERENCES categoriaRecurso(idCategoriaRecurso)
 );
 
-INSERT INTO recurso VALUES (default,'Portatil-1','Portatil Depto. Nº1','Secretaria',1,1);
-INSERT INTO recurso VALUES (default,'Portatil-2','Portatil Depto. Nº2','Secretaria',1,1);
-INSERT INTO recurso VALUES (default,'Telf-1','Smartphone Nº1','Secretaria',2,1);
-INSERT INTO recurso VALUES (default,'Modem3G-1','Modem USB 3G Nº1','Secretaria',3,1);
-INSERT INTO recurso VALUES (default,'Router-1','Router Laboratorio Nº 1', 'Laboratorio',3,2);
-INSERT INTO recurso VALUES (default,'Osciloscopio-1','Osciloscopio Nº 1', 'Secretaria', 2,2);
-INSERT INTO recurso VALUES (default,'Aula Laboratorio-1','Aula Laboratorio Nº 1','Secretaria',1,2);
-INSERT INTO recurso VALUES (default,'Aula Laboratorio-2','Aula Laboratorio Nº 2','Secretaria',1,2);
-INSERT INTO recurso VALUES (default,'Aula POBPL-1','Aula POPBL Nº 1','Secretaria',2,2);
-INSERT INTO recurso VALUES (default,'Aula POBPL-2','Aula POPBL Nº 2','Secretaria',2,2);
+INSERT INTO recurso VALUES (default,'Portatil-1','Portatil Depto. N1','Secretaria',1,1);
+INSERT INTO recurso VALUES (default,'Portatil-2','Portatil Depto. N2','Secretaria',1,1);
+INSERT INTO recurso VALUES (default,'Telf-1','Smartphone N1','Secretaria',2,1);
+INSERT INTO recurso VALUES (default,'Modem3G-1','Modem USB 3G N1','Secretaria',3,1);
+INSERT INTO recurso VALUES (default,'Router-1','Router Laboratorio N1', 'Laboratorio',3,2);
+INSERT INTO recurso VALUES (default,'Osciloscopio-1','Osciloscopio N1', 'Secretaria', 2,2);
+INSERT INTO recurso VALUES (default,'Aula Laboratorio-1','Aula Laboratorio N1','Secretaria',1,2);
+INSERT INTO recurso VALUES (default,'Aula Laboratorio-2','Aula Laboratorio N2','Secretaria',1,2);
+INSERT INTO recurso VALUES (default,'Aula POBPL-1','Aula POPBL N1','Secretaria',2,2);
+INSERT INTO recurso VALUES (default,'Aula POBPL-2','Aula POPBL N2','Secretaria',2,2);
 
 CREATE TABLE reserva
 (
