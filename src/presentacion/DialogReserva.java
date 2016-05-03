@@ -35,6 +35,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import dominio.ModeloTablaReservas;
+import dominio.Persona;
 import dominio.RecursoExtendido;
 import dominio.Reserva;
 import negocio.Sesion;
@@ -56,7 +57,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 	TrazadorTablaReservas trazador;
 	ModeloTablaReservas tabla;
 	
-	public DialogReserva (JFrame ventana, RecursoExtendido recurso){
+	public DialogReserva (JFrame ventana,Persona p, RecursoExtendido recurso){
 		super (ventana,"Reservas",true);
 		this.recurso = recurso;
 		this.setLocation(200,100);

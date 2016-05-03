@@ -42,7 +42,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 	JMenu	menuRecursos,  menuSalir;
 	JMenuItem opcionMenu;
 	
-	AbstractAction accAdd,accDelete,accEdit,accReservar,accTake;
+	AbstractAction accAdd,accDelete,accEdit,accReservar,accTake, accRecurso;
 	ModeloTablaRecursos tabla;
 	 
 	JTable vTabla;
@@ -50,6 +50,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 	ModeloColumnasTablaRecursos columnas;
 	JScrollPane panelS;
 	Persona persona;
+	RecursoExtendido recurso; 
 	
 		
 	public FormRecursos(Persona p){
@@ -112,6 +113,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		accEdit = new MiAccion ("Editar",new ImageIcon("iconos/edit.png"),"Editar",KeyEvent.VK_E);
 		accReservar = new MiAccion ("Reservar",new ImageIcon("iconos/month.png"),"Reservar",KeyEvent.VK_R);
 		accTake = new MiAccion ("Llevar",new ImageIcon("iconos/agt_login.png"),"Llevar",KeyEvent.VK_P);
+		accRecurso = new MiAccion ("Recurso",new ImageIcon("iconos/recurso.png"),"Recurso", KeyEvent.VK_U);
 	}
 
 	private JToolBar crearToolBar() {
@@ -126,6 +128,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		
 		toolBar.add(accReservar);
 		toolBar.add(accTake);
+		toolBar.add(accRecurso);
 		
 		
 		
@@ -184,6 +187,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		
 		opcionMenu = menuRecursos.add(accReservar);
 		opcionMenu = menuRecursos.add(accTake);
+		opcionMenu = menuRecursos.add(accRecurso);
 	
 		
 		return menuRecursos;
@@ -211,14 +215,21 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 			case "Editar": tratarOpcionEditar();break;
 			case "Reservar": tratarOpcionReservar();break;
 			case "Llevar": System.out.println("Ha elegido Llevar");break;
+			case "Recurso": tratarOpcionListaRecurso();break;
 			}
 	
+		}
+		
+		private void tratarOpcionListaRecurso(){
+			int index = vTabla.getSelectedRow() ;
+			RecursoExtendido recurso = tabla.getRecursoAt(index);
+			DialogoListaEsperaRecurso dialogoReserva = new DialogoListaEsperaRecurso(FormRecursos.this, recurso);
 		}
 
 		private void tratarOpcionReservar() {
 			int index = vTabla.getSelectedRow() ;
 			RecursoExtendido recurso = tabla.getRecursoAt(index);
-			DialogReserva dialogo = new DialogReserva (FormRecursos.this,recurso);
+			DialogReserva dialogo = new DialogReserva (FormRecursos.this,persona,recurso);
 			try {
 				FormRecursos.this.tabla.actualizar();
 			} catch (Exception e) {
