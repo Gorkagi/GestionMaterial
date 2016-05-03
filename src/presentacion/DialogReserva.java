@@ -205,7 +205,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 	}
 
 	private Component crearPanelRecurso() {
-		JPanel panel = new JPanel (new GridLayout(2,2,20,20));
+		JPanel panel = new JPanel (new GridLayout(3,2,20,20));
 		panel.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createEmptyBorder(10,10,0,10),
 				BorderFactory.createLoweredBevelBorder()));
@@ -213,6 +213,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		panel.add(crearCampo("Descripcion",recurso.getDescripcion()));
 		panel.add(crearCampo("Ubicacion",recurso.getUbicacion()));
 		panel.add(crearCampo("Responsable",recurso.getNombreResponsable()));
+		panel.add(crearCampo("Tipo", recurso.getTipo()));
 		return panel;
 	}
 	
