@@ -210,7 +210,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			switch (e.getActionCommand()){
-			case "Añadir": tratarOpcionAñadir(); break;
+			case "Aï¿½adir": tratarOpcionAnadir(); break;
 			case "Borrar": tratarOpcionBorrar(); break;
 			case "Editar": tratarOpcionEditar();break;
 			case "Reservar": tratarOpcionReservar();break;
@@ -270,7 +270,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 			   }
 		}
 
-		private void tratarOpcionAñadir() {
+		private void tratarOpcionAnadir() {
 			DialogoRecurso dialogo = new DialogoRecurso (FormRecursos.this,true);
 			if (dialogo.isCambioRealizado()){
 				   try {

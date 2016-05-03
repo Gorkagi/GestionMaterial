@@ -22,7 +22,8 @@ public class TrazadorTablaRecursos extends DefaultTableCellRenderer {
 		case 2: super.setHorizontalAlignment(LEFT);break;
 		case 3: super.setHorizontalAlignment(CENTER);break;
 		case 4: super.setHorizontalAlignment(CENTER);break;
-		case 5: return getImageEstado(valor); 
+		case 5: super.setHorizontalAlignment(CENTER);break;
+		case 6: return getImageEstado(valor);
 
 		}
 

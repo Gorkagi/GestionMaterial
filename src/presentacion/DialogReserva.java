@@ -89,7 +89,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 	}
 
 	private void crearAcciones() {
-		accAdd = new MiAccion ("A�adir", new ImageIcon("iconos/edit_add.png"), "A�adir", KeyEvent.VK_A);
+		accAdd = new MiAccion ("Añadir", new ImageIcon("iconos/edit_add.png"), "Añadir", KeyEvent.VK_A);
 		accDelete = new MiAccion ("Borrar",new ImageIcon("iconos/edit_remove.png"),"Borrar",KeyEvent.VK_D);
 		accEdit = new MiAccion ("Editar",new ImageIcon("iconos/edit.png"),"Editar",KeyEvent.VK_E);
 		accTake = new MiAccion ("Llevar",new ImageIcon("iconos/agt_login.png"),"Llevar",KeyEvent.VK_P);
@@ -211,8 +211,8 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 				BorderFactory.createEmptyBorder(10,10,0,10),
 				BorderFactory.createLoweredBevelBorder()));
 		panel.add(crearCampo("Nombre",recurso.getNombre()));
-		panel.add(crearCampo("Descripci�n",recurso.getDescripcion()));
-		panel.add(crearCampo("Ubicaci�n",recurso.getUbicacion()));
+		panel.add(crearCampo("Descripcion",recurso.getDescripcion()));
+		panel.add(crearCampo("Ubicacion",recurso.getUbicacion()));
 		panel.add(crearCampo("Responsable",recurso.getNombreResponsable()));
 		return panel;
 	}
@@ -243,7 +243,7 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			switch (e.getActionCommand()){
-			case "A�adir": tratarOpcionA�adir(); break;
+			case "Añadir": tratarOpcionAnadir(); break;
 			case "Borrar": tratarOpcionBorrar(); break;
 			case "Editar": tratarOpcionEditar();break;
 			case "Llevar": System.out.println("Ha elegido Llevar");break;
@@ -285,8 +285,8 @@ public class DialogReserva extends JDialog implements ListSelectionListener {
 		
 		}
 
-		private void tratarOpcionA�adir() {
-			DialogoDatosReserva dialogo = new DialogoDatosReserva (DialogReserva.this,"A�adir nueva reserva",Sesion.getInstance().getUsuario(), recurso, true);
+		private void tratarOpcionAnadir() {
+			DialogoDatosReserva dialogo = new DialogoDatosReserva (DialogReserva.this,"Añadir nueva reserva",Sesion.getInstance().getUsuario(), recurso, true);
 			if (dialogo.isCambioRealizado()){
 				try {
 					tabla.actualizar();

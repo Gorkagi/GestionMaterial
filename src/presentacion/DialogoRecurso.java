@@ -28,9 +28,10 @@ import persistencia.DAORecursos;
 public class DialogoRecurso extends JDialog implements ActionListener{
 	
 	final static String  TITULO = "Crear nuevo recurso";
-	JComboBox<String> comboResponsable;
+	JComboBox<String> comboResponsable, comboTipo;
 	JTextField txNombre,txDescripcion,txUbicacion,txResponsable;
 	ArrayList<Persona> listaPersonas= null; 
+	ArrayList<String> listaTiposRecurso = null;
 	boolean cambioRealizado = false;
 	RecursoExtendido recurso = null;
 	boolean editando = false;
@@ -88,9 +89,10 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(4,1,0,20));
+		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
 		
 		String nombres [];
+		String tipos [];
 		
 		panel.add(txNombre = crearCampo("Nombre"));
 		panel.add(txDescripcion = crearCampo("Descripci�n"));
@@ -101,15 +103,32 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			listaTiposRecurso = DAORecursos.obtenerTiposRecursos();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		nombres = new String [listaPersonas.size()];
 		for (int i = 0; i<nombres.length; i++){
 			nombres [i] = listaPersonas.get(i).getNombre();
 		}
+		
+		tipos = new String[listaTiposRecurso.size()];
+		for (int i = 0; i<tipos.length; i++){
+			tipos[i] = listaTiposRecurso.get(i);
+		}
+		
 		comboResponsable = new JComboBox<>(nombres);
 		comboResponsable.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Color.CYAN),"Responsable"));
 		panel.add(comboResponsable);
+		
+		comboTipo = new JComboBox<String>(tipos);
+		comboTipo.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.CYAN),"Tipo Recurso"));
+		panel.add(comboTipo);
 		return panel;
 	}
 
@@ -130,7 +149,8 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 					}else if (editando){
 						try {
 							DAORecursos.modificarRecurso(recurso.getId(),txNombre.getText(), txUbicacion.getText(),
-									txDescripcion.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId());
+									txDescripcion.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId(),
+									comboTipo.getSelectedIndex()+1);
 						} catch (SQLException e1) {
 							
 							e1.printStackTrace();
@@ -139,7 +159,8 @@ public class DialogoRecurso extends JDialog implements ActionListener{
 								"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 					}else{
 						DAORecursos.InsertarRecurso(txNombre.getText(), txUbicacion.getText(),
-								txDescripcion.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId());
+								txDescripcion.getText(), listaPersonas.get(comboResponsable.getSelectedIndex()).getId(),
+								comboTipo.getSelectedIndex()+1);
 						JOptionPane.showMessageDialog(this, "Recurso a�adido",
 								"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 					}
