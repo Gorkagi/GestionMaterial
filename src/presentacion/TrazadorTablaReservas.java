@@ -25,6 +25,7 @@ public class TrazadorTablaReservas extends DefaultTableCellRenderer {
 		case 2: super.setText(formatearFecha(valor));
 	    		super.setHorizontalAlignment(CENTER);break;
 		case 3: super.setHorizontalAlignment(CENTER);break;
+		case 4: super.setHorizontalAlignment(CENTER); break;
 		}
 		
 		

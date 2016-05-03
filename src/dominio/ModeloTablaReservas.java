@@ -82,6 +82,7 @@ public class ModeloTablaReservas extends AbstractTableModel {
 		case 1: return reserva.getDesde();
 		case 2: return reserva.getHasta();
 		case 3: return new Integer(reserva.getUrgencia());
+		case 4: return reserva.getRecurso().getTipo();
 	
 		}
 		return null;

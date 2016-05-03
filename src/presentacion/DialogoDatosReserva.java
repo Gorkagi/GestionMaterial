@@ -148,12 +148,23 @@ public class DialogoDatosReserva extends JDialog implements ActionListener,Prope
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
+		JPanel panel = null;
+		if(recurso.getTipo().equals("Uso común")) {
+			panel = new JPanel (new GridLayout(5,1,0,20));
+		}else{
+			panel = new JPanel (new GridLayout(4,1,0,20));
+		}
 		panel.add(txNombrePersona = crearCampo("Persona"));
 		panel.add(txNombreRecurso = crearCampo("Recurso"));
 		panel.add(txDesde = crearCampoFecha("Desde",desde.toLocalDate()));
 		panel.add(txHasta = crearCampoFecha ("Hasta",hasta.toLocalDate()));
-		panel.add(txUrgencia = crearCampo("Urgencia"));
+		if(recurso.getTipo().equals("Uso común")) {
+			panel.add(txUrgencia = crearCampo("Urgencia"));
+			
+		}else{
+			txUrgencia = crearCampo("Urgencia");
+			txUrgencia.setText("0");
+		}
 		txDesde.addPropertyChangeListener(this);
 		txHasta.addPropertyChangeListener(this);
 		return panel;
