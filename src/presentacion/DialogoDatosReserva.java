@@ -34,6 +34,7 @@ import dominio.ModeloTablaReservas;
 import dominio.Persona;
 import dominio.RecursoExtendido;
 import dominio.Reserva;
+import mailing.MailSender;
 import persistencia.DAOReservas;
 
 public class DialogoDatosReserva extends JDialog implements ActionListener,PropertyChangeListener{
@@ -213,6 +214,8 @@ public class DialogoDatosReserva extends JDialog implements ActionListener,Prope
 						this.desde, this.hasta, Integer.valueOf(txUrgencia.getText())));
 				JOptionPane.showMessageDialog(this, "Reserva a�adida",
 						"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+				MailSender mSender = new MailSender();
+				mSender.sendMailValoracion(persona.getNombre(), "Mail", recurso.getNombre());
 			}else{
 				if(recurso.getTipo().equals("Especial")) {
 					JOptionPane.showMessageDialog(this, "Ya existe una reserva de ese recurso en esa fecha, pasaras a la lista de espera",

@@ -19,15 +19,15 @@ public class MailSender {
 	private Map<String, Object> result;
 
 	@SuppressWarnings("rawtypes")
-	public void sendMailValoracion(String nombre, String mail, String producto, String mensaje){
+	public void sendMailValoracion(String nombre, String mail, String producto){
 
-		String mensajehtml = mensaje.replaceAll("\n", "</br>");
+		/*String mensajehtml = mensaje.replaceAll("\n", "</br>");
 		mensajehtml = mensajehtml.replaceAll("ó", "&#243;");
 		mensajehtml = mensajehtml.replaceAll("á", "&#225;");
 		mensajehtml = mensajehtml.replaceAll("é", "&#233;");
 		mensajehtml = mensajehtml.replaceAll("í", "&#237;");
 		mensajehtml = mensajehtml.replaceAll("ú", "&#250;");
-		mensajehtml = mensajehtml.replaceAll("ñ", "&#241;");
+		mensajehtml = mensajehtml.replaceAll("ñ", "&#241;");*/
 
 		sendpulse = new Sendpulse("edb1ec9661ed3d0580f986e7ffd6be1d", "67a7ea18994ba181a343aecf432ebfc0");
 		from = new HashMap<String, Object>();
@@ -39,9 +39,9 @@ public class MailSender {
 		elementto.put("email",mail);
 		to.add(elementto);
 		emaildata = new HashMap<String, Object>();
-		emaildata.put("html","YA PUEDE RECOGER SU RECURSO");
-		emaildata.put("text"," ");
-		emaildata.put("subject","Estado de la lista de Espera");
+		//emaildata.put("html","YA PUEDE RECOGER SU RECURSO");
+		emaildata.put("text","La reseva de "+producto+" se ha realizado correctamente.");
+		emaildata.put("subject","Confimación de Reserva");
 		emaildata.put("from",from);
 		emaildata.put("to",to);
 		result = (Map<String, Object>) sendpulse.smtpSendMail(emaildata);
