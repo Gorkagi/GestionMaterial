@@ -13,7 +13,8 @@ public class ModeloColumnasTablaReservas extends DefaultTableColumnModel{
 		this.addColumn(crearColumna("Nombre",0,100));
 		this.addColumn(crearColumna("Desde",1,100));
 		this.addColumn(crearColumna("Hasta",2,100));
-		this.addColumn(crearColumna("Prioirdad",3,20));
+		this.addColumn(crearColumna("Prioridad",3,20));
+		this.addColumn(crearColumna("Tipo",4,50));
 	}
 
 	private TableColumn crearColumna(String texto, int indice, int ancho) {
