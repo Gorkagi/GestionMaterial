@@ -1,6 +1,9 @@
+import java.sql.SQLException;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import persistencia.DAOReservas;
 import presentacion.FormLogin;
 
 public class StartClas

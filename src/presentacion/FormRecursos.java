@@ -221,9 +221,7 @@ public class FormRecursos extends JFrame implements ListSelectionListener {
 		}
 		
 		private void tratarOpcionListaRecurso(){
-			int index = vTabla.getSelectedRow() ;
-			RecursoExtendido recurso = tabla.getRecursoAt(index);
-			DialogoListaEsperaRecurso dialogoReserva = new DialogoListaEsperaRecurso(FormRecursos.this, recurso);
+			DialogoListaEsperaRecurso dialogoLista = new DialogoListaEsperaRecurso(FormRecursos.this);
 		}
 
 		private void tratarOpcionReservar() {

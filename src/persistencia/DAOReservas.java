@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import dominio.Persona;
+import dominio.Recurso;
 import dominio.RecursoExtendido;
 import dominio.Reserva;
 
@@ -23,21 +24,22 @@ public class DAOReservas {
 	    try
 	    {
 	      stmt=PoolConexiones.getConexion().createStatement();
-	      strSQL="SELECT P.DNI,P.NOMBRE,P.PASSWORD,P.USERNAME,P.IDTIPOUSUARIO," +
-	                     "R.IDRESERVA,R.FECHAINICIO,R.FECHAFIN,URGENCIA"+
+	      strSQL="SELECT P.DNI,P.NOMBRE,P.PASSWORD,P.USERNAME,P.EMAIL,P.IDTIPOUSUARIO," +
+	                     "R.IDRESERVA,R.FECHAINICIO,R.FECHAFIN,URGENCIA,R.IDTIPORESERVA"+
 	             " FROM Reserva AS R, PERSONA AS P"+
 	             " WHERE R.dniPeticionario = P.dni AND"+
 	             " idRecurso="+recurso.getId();
 	      result = stmt.executeQuery(strSQL);
-	      resultado = new ArrayList<>();
+	      resultado = new ArrayList<Reserva>();
 	      
 	      while(result.next()){
 	    	 persona = new Persona(result.getString("username"),result.getString("nombre"),
-	    			              result.getString("password"),result.getInt("dni"), 
+	    			              result.getString("password"),result.getInt("dni"),
+	    			              result.getString("email"),
 	    			              result.getInt("IdTipoUsuario"));
 	    	 reserva = new Reserva(result.getInt("idReserva"),persona,recurso,result.getTimestamp("fechaInicio").toLocalDateTime(),
 	    			 		result.getTimestamp("fechafin").toLocalDateTime(),
-	    			 		result.getInt("urgencia"));
+	    			 		result.getInt("urgencia"), result.getInt("idTipoReserva"));
 	    	 resultado.add(reserva);
 	      }
 	     
@@ -47,7 +49,6 @@ public class DAOReservas {
 	    }
 	      return resultado;
 	}
-	
 	
 
 	public static boolean estaReservado(int id, LocalDateTime ahora) {
@@ -66,7 +67,7 @@ public class DAOReservas {
 	             " WHERE idRecurso="+id+" and '"+
 	             strDateTime +"' BETWEEN fechaInicio AND fechaFin";
 	      result = stmt.executeQuery(strSQL);
-	      if(!result.next()) throw new Exception("sentencia errónea: " + strSQL);
+	      if(!result.next()) throw new Exception("sentencia errï¿½nea: " + strSQL);
 	      resultado= (result.getInt(1) != 0);
 	     
 	    } catch (Exception e){
@@ -76,6 +77,45 @@ public class DAOReservas {
 	      return resultado;
 	}
 
+	
+	public static ArrayList<Reserva> getListaReservas() {
+		Statement stmt;
+	    ResultSet result;
+	    String strSQL;
+	    ArrayList<Reserva> resultado = null;
+	    Persona persona;
+	    Reserva reserva;
+	    RecursoExtendido recurso;
+	    try
+	    {
+	      stmt=PoolConexiones.getConexion().createStatement();
+	      strSQL="SELECT P.DNI,P.NOMBRE,P.PASSWORD,P.USERNAME,P.EMAIL,P.IDTIPOUSUARIO," +
+	                     "R.IDRESERVA,R.FECHAINICIO,R.FECHAFIN,URGENCIA,R.IDTIPORESERVA,"+
+	                     "C.IDRECURSO, C.NOMBRE, C.DESCRIPCION, C.UBICACION, C.DNIRESPONSABLE, C.IDCATEGORIARECURSO"+
+	             " FROM Reserva AS R, PERSONA AS P, RECURSO AS C"+
+	             " WHERE R.dniPeticionario = P.dni AND (R.idRecurso = C.IdRecurso) AND (R.IDTIPORESERVA="+2+");";
+	      result = stmt.executeQuery(strSQL);
+	      resultado = new ArrayList<>();
+	      
+	      while(result.next()){
+	    	 recurso = new RecursoExtendido(result.getInt("idRecurso"), result.getString("C.Nombre"), result.getString("C.descripcion"), 
+	    			 result.getString("C.ubicacion"), DAOPersonas.buscarPorId(result.getInt("C.dniResponsable")).getId(), DAORecursos.identificarTipoRecurso(result.getInt("c.idCategoriaRecurso")));
+	    	 persona = new Persona(result.getString("username"),result.getString("nombre"),
+	    			              result.getString("password"),result.getInt("dni"),
+	    			              result.getString("email"),
+	    			              result.getInt("IdTipoUsuario"));
+	    	 reserva = new Reserva(result.getInt("idReserva"),persona,recurso,result.getTimestamp("fechaInicio").toLocalDateTime(),
+	    			 		result.getTimestamp("fechafin").toLocalDateTime(),
+	    			 		result.getInt("urgencia"), result.getInt("idTipoReserva"));
+	    	 resultado.add(reserva);
+	      }
+	     
+	    } catch (Exception e){
+	    	System.out.println(e.getMessage());
+	    	e.printStackTrace();
+	    }
+	      return resultado;
+	}
 	public static void eliminarReservasRecurso(int id) throws SQLException {
 		Statement stmt;
 		int result;
@@ -98,7 +138,7 @@ public class DAOReservas {
 		      stmt=PoolConexiones.getConexion().createStatement();
 		      strSQL="INSERT INTO RESERVA "+
 		             " VALUES (0,'"+strFechaDesde+"','"+strFechaHasta+"',"+reserva.getUrgencia()+
-		             ","+reserva.getPersona().getId()+","+reserva.getRecurso().getId()+")";
+		             ","+reserva.getPersona().getId()+","+reserva.getRecurso().getId()+","+reserva.getTipo()+")";
 		      result = stmt.executeUpdate(strSQL);
 		    }catch(SQLException e) {
 		      e.printStackTrace();
@@ -155,8 +195,9 @@ public class DAOReservas {
 	      DateTimeFormatter formatter =   DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm");
 	      String strFechaDesde = desde.format(formatter);
 	      String strFechaHasta = hasta.format(formatter);
-	      strSQL="SELECT P.DNI,P.NOMBRE,P.PASSWORD,P.USERNAME,P.IDTIPOUSUARIO," +
-	                     "R.IDRESERVA,R.FECHAINICIO,R.FECHAFIN,URGENCIA"+
+	      strSQL="SELECT P.DNI,P.NOMBRE,P.PASSWORD,P.USERNAME,P.EMAIL,P.IDTIPOUSUARIO," +
+	                     "R.IDRESERVA,R.FECHAINICIO,R.FECHAFIN,URGENCIA,"+
+	    		  "R.IDTIPORESERVA"+
 	             " FROM Reserva AS R, PERSONA AS P"+
 	             " WHERE R.dniPeticionario = P.dni AND"+
 	             " idRecurso="+recurso.getId()+" AND "+
@@ -169,11 +210,12 @@ public class DAOReservas {
 	      
 	      while(result.next()){
 	    	 persona = new Persona(result.getString("username"),result.getString("nombre"),
-	    			              result.getString("password"),result.getInt("dni"), 
+	    			              result.getString("password"),result.getInt("dni"),
+	    			              result.getString("email"),
 	    			              result.getInt("IdTipoUsuario"));
 	    	 reserva = new Reserva(result.getInt("idReserva"),persona,recurso,result.getTimestamp("fechaInicio").toLocalDateTime(),
 	    			 		result.getTimestamp("fechafin").toLocalDateTime(),
-	    			 		result.getInt("urgencia"));
+	    			 		result.getInt("urgencia"), result.getInt("idTipoReserva"));
 	    	 resultado.add(reserva);
 	      }
 	     
@@ -183,7 +225,6 @@ public class DAOReservas {
 	    }
 	      return resultado;
 	}
-
 
 
 	public static void eliminarReserva(int id) throws SQLException {

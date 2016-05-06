@@ -18,15 +18,16 @@ CREATE TABLE persona
  nombre			VARCHAR(30) NOT NULL,
  password		VARCHAR(64) NOT NULL,
  userName		VARCHAR(35) NOT NULL,
+ email          VARCHAR(64), 
  idTipoUsuario	INT NOT NULL,
  CONSTRAINT pk_persona PRIMARY KEY (dni),
  CONSTRAINT fk_persona_tipousuario FOREIGN KEY (idTipoUsuario) REFERENCES tipousuario(idTipoUsuario)
 );
 
-INSERT INTO persona VALUES (default,'Monse','usansolo','mereno',2);
-INSERT INTO persona VALUES (default,'Txema','gasteiz','txperez',2);
-INSERT INTO persona VALUES (default,'Urtzi','arrasate','umarkiegi',2);
-INSERT INTO persona VALUES (default,'Xabier','arrasate','xelkorobarrutia',1);
+INSERT INTO persona VALUES (default,'Monse','usansolo','mereno','mereno@mondragon.edu',2);
+INSERT INTO persona VALUES (default,'Txema','gasteiz','txperez','txperez@mondragon.edu',2);
+INSERT INTO persona VALUES (default,'Urtzi','arrasate','umarkiegi','ivelez@mondragon.edu',2);
+INSERT INTO persona VALUES (default,'Xabier','arrasate','xelkorobarrutia','umarkiegi@mondragon.edu',1);
 
 CREATE TABLE categoriaRecurso
 (
@@ -63,6 +64,16 @@ INSERT INTO recurso VALUES (default,'Aula Laboratorio-2','Aula Laboratorio N2','
 INSERT INTO recurso VALUES (default,'Aula POBPL-1','Aula POPBL N1','Secretaria',2,2);
 INSERT INTO recurso VALUES (default,'Aula POBPL-2','Aula POPBL N2','Secretaria',2,2);
 
+CREATE TABLE tipoReserva
+(
+ idTipoReserva      INT AUTO_INCREMENT,
+ descripcion        VARCHAR(64),
+ CONSTRAINT pk_tipoReserva PRIMARY KEY (idTipoReserva)
+);
+
+INSERT INTO tipoReserva VALUES (default, "Normal");
+INSERT INTO tipoReserva VALUES (default, "Lista de espera");
+
 CREATE TABLE reserva
 (
  idReserva			INT AUTO_INCREMENT,
@@ -71,17 +82,12 @@ CREATE TABLE reserva
  urgencia			INT,
  dniPeticionario	INT NOT NULL,
  idRecurso			INT NOT NULL,
+ idTipoReserva      INT NOT NULL,
  CONSTRAINT pk_reserva PRIMARY KEY (idReserva),
  CONSTRAINT fk_reserva_persona FOREIGN KEY (dniPeticionario) REFERENCES persona(dni),
- CONSTRAINT fk_reserva_recurso FOREIGN KEY (idRecurso) REFERENCES recurso(idRecurso)
+ CONSTRAINT fk_reserva_recurso FOREIGN KEY (idRecurso) REFERENCES recurso(idRecurso),
+ CONSTRAINT fk_reserva_tipoReserva FOREIGN KEY (idTipoReserva) REFERENCES tipoReserva(idTipoReserva)
 );
-
-INSERT INTO reserva  VALUES (default, '2016-02-08', '2016-02-10', 1, 1, 1);
-INSERT INTO reserva  VALUES (default, '2016-02-15', '2016-02-19', 1, 1, 1);
-INSERT INTO reserva  VALUES (default, '2016-02-15', '2016-02-17', 2, 2, 3);
-INSERT INTO reserva  VALUES (default, '2016-02-15', '2016-02-18', 2, 3, 2);
-
-
 
 CREATE TABLE prestamo
 (

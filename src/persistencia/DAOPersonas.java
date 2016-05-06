@@ -19,7 +19,7 @@ public class DAOPersonas
     	
       lista = new ArrayList<>();
       stmt=PoolConexiones.getConexion().createStatement();
-      strSQL="SELECT userName,nombre,password,dni, idTipoUsuario"+
+      strSQL="SELECT userName,nombre,password,dni, email, idTipoUsuario"+
                " FROM Persona";
       result = stmt.executeQuery(strSQL);
       while (result.next()){
@@ -27,6 +27,7 @@ public class DAOPersonas
         		 				result.getString("nombre"),
         		 				result.getString("password"),
         		 				result.getInt("dni"),
+        		 				result.getString("email"),
         		 				result.getInt("idTipoUsuario"));
          lista.add(persona);
       }
@@ -46,13 +47,13 @@ public class DAOPersonas
     try
     {
       stmt=PoolConexiones.getConexion().createStatement();
-      strSQL="SELECT userName, nombre, password, dni,idTipoUsuario"+
+      strSQL="SELECT userName, nombre, password, dni,email,idTipoUsuario"+
              " FROM Persona"+
              " WHERE dni="+idPersona;
       result = stmt.executeQuery(strSQL);
       if(!result.next()) return null;
       p=new Persona(result.getString("userName"),result.getString("nombre"),
-                    result.getString("password"),result.getInt("dni"),result.getInt("idTipoUsuario"));
+                    result.getString("password"),result.getInt("dni"),result.getString("email"),result.getInt("idTipoUsuario"));
       result.close();
       return p;
     }
@@ -74,13 +75,13 @@ public class DAOPersonas
     try
     {
       stmt=PoolConexiones.getConexion().createStatement();
-      strSQL="SELECT userName, nombre, password, dni,idTipoUsuario"+
+      strSQL="SELECT userName, nombre, password, dni,email,idTipoUsuario"+
              " FROM Persona"+
              " WHERE userName='"+nombre+"'";
       result = stmt.executeQuery(strSQL);
       if(!result.next()) return null;
       p=new Persona(result.getString("userName"),result.getString("nombre"),
-                    result.getString("password"),result.getInt("dni"),result.getInt("idTipoUsuario"));
+                    result.getString("password"),result.getInt("dni"),result.getString("email"), result.getInt("idTipoUsuario"));
       result.close();
       return p;
     }

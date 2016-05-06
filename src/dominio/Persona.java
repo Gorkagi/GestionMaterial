@@ -7,14 +7,16 @@ public class Persona
   protected String password;
   protected int id;
   protected int idTipoUsuario;
+  protected String email;
   
-  public Persona(String userName, String nombre,String password,int id,int tipo)
+  public Persona(String userName, String nombre,String password,int id,String email,int tipo)
   {
     this.userName=userName;
     this.nombre=nombre;
     this.password=password;
     this.id=id;
     this.idTipoUsuario = tipo;
+    this.email = email;
   }
   
   public String getUserName(){return userName;}
@@ -27,4 +29,9 @@ public class Persona
   {
     return password.equals(this.password);
   }
+
+public String getEmail() {
+	return email;
+}
+  
 }

@@ -20,24 +20,24 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import dominio.ModeloTablaLista;
+import dominio.ModeloTablaRecursos;
 import dominio.RecursoExtendido;
 
 public class DialogoListaEsperaRecurso extends JDialog implements ListSelectionListener{
-	
-	RecursoExtendido recurso;
+
 	JTextField tFechaInic, tFechaEntrega;
 	JLabel lFechaInic, lFechaEntrega;
 	JButton bReserva;
 	JScrollPane panelScroll;
 	TrazadorTablaListaRecursos trazador;
 	ModeloColumnaListaRecursos columnas;
-	ModeloTablaListaRecursos modelo;
+	ModeloTablaLista tabla;
 	JTable tablaRecursos;
-	
 
-	public DialogoListaEsperaRecurso (JFrame frame, RecursoExtendido recurso){
+
+	public DialogoListaEsperaRecurso (JFrame frame){
 		super ( frame,"Lista Espera Recurso",true );
-		this.recurso = recurso;
 		this.setLocation(200, 100);
 		this.setSize(600,450);
 		this.setContentPane(crearPanelVentana());
@@ -45,7 +45,7 @@ public class DialogoListaEsperaRecurso extends JDialog implements ListSelectionL
 		this.setVisible(true);
 		this.setResizable(false);
 	}
-	
+
 	private Container crearPanelVentana() {
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(crearPanelDatos(),BorderLayout.NORTH);
@@ -65,7 +65,7 @@ public class DialogoListaEsperaRecurso extends JDialog implements ListSelectionL
 
 	private Component crearPanelTabla() {
 		panelScroll = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
+
 		crearTabla();
 		panelScroll.setViewportView(tablaRecursos);
 		return panelScroll;
@@ -75,19 +75,20 @@ public class DialogoListaEsperaRecurso extends JDialog implements ListSelectionL
 		trazador = new TrazadorTablaListaRecursos();
 		columnas = new ModeloColumnaListaRecursos(trazador);
 		try{
-			modelo = new ModeloTablaListaRecursos();
+			tabla = new ModeloTablaLista(columnas);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		tablaRecursos = new JTable(modelo,columnas);
+
+		tablaRecursos = new JTable(tabla,columnas);
 		tablaRecursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tablaRecursos.getSelectionModel().addListSelectionListener(this);
 		tablaRecursos.setFillsViewportHeight(true);
 		tablaRecursos.getTableHeader().setReorderingAllowed(false);
-		//tablaRecursos.setRowSelectionInterval(0, 0);
+		if (tabla.getRowCount()>0)
+		     tablaRecursos.setRowSelectionInterval(0, 0);
 		tablaRecursos.setFillsViewportHeight(true);
-		
+
 	}
 
 	private Component crearPanelDatos() {
@@ -95,35 +96,35 @@ public class DialogoListaEsperaRecurso extends JDialog implements ListSelectionL
 		panel.setDividerLocation(272);
 		panel.setEnabled(false);
 		panel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
-		
+
 		return panel;
 	}
 
 	private Component crearPanelFechaEntrega() {
 		JPanel panel = new JPanel(new FlowLayout());
 		panel.setBorder(BorderFactory.createTitledBorder("Producto"));
-		
+
 		lFechaEntrega = new JLabel("Fecha de Entrega : ");
 		tFechaEntrega = new JTextField();
 		tFechaEntrega.setPreferredSize(new Dimension(80,20));
-		
+
 		panel.add(lFechaEntrega);
 		panel.add(tFechaEntrega);
-		
+
 		return panel;
 	}
 
 	private Component crearPanelFechaInic() {
 		JPanel panel = new JPanel(new FlowLayout());
 		panel.setBorder(BorderFactory.createTitledBorder("Lista de espera para"));
-		
+
 		lFechaInic = new JLabel("Fecha de Inicio : ");
 		tFechaInic = new JTextField();
 		tFechaInic.setPreferredSize(new Dimension(80,20));
-		
+
 		panel.add(lFechaInic);
 		panel.add(tFechaInic);
-		
+
 		return panel;
 	}
 

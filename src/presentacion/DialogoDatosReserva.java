@@ -209,14 +209,24 @@ public class DialogoDatosReserva extends JDialog implements ActionListener,Prope
 					"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 		}else{
 			if(comprobarReserva()){
-				DAOReservas.insertarReserva(new Reserva(0,this.persona,this.recurso, 
-						this.desde, this.hasta, Integer.valueOf(txUrgencia.getText())));
-				JOptionPane.showMessageDialog(this, "Reserva a�adida",
+				if(recurso.getTipo().equals("Especial")) {
+					DAOReservas.insertarReserva(new Reserva(0,this.persona,this.recurso, 
+							this.desde, this.hasta, Integer.valueOf(txUrgencia.getText()), 2));
+				}else{
+					DAOReservas.insertarReserva(new Reserva(0,this.persona,this.recurso, 
+							this.desde, this.hasta, Integer.valueOf(txUrgencia.getText()), 1));
+				}
+
+				JOptionPane.showMessageDialog(this, "Reserva añadida",
 						"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+				
+				
 			}else{
 				if(recurso.getTipo().equals("Especial")) {
 					JOptionPane.showMessageDialog(this, "Ya existe una reserva de ese recurso en esa fecha, pasaras a la lista de espera",
 							"Informacion", JOptionPane.INFORMATION_MESSAGE);
+					DAOReservas.insertarReserva(new Reserva(0,this.persona,this.recurso, 
+							this.desde, this.hasta, Integer.valueOf(txUrgencia.getText()), 2));
 				}
 				
 			}

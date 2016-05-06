@@ -11,15 +11,17 @@ public class Reserva {
 	LocalDateTime desde;
 	LocalDateTime hasta;
 	int urgencia;
+	int tipo;
 	
 	public Reserva (int id,Persona p,RecursoExtendido rec, LocalDateTime desde, LocalDateTime hasta,
-			         int urgencia){
+			         int urgencia, int tipo){
 		this.id = id;
 		this.persona = p;
 		this.recurso = rec;
 		this.desde = desde;
 		this.hasta = hasta;
 		this.urgencia = urgencia;
+		this.tipo = tipo;
 	}
 	public int getId() {
 		return id;
@@ -43,5 +45,10 @@ public class Reserva {
 	public int getUrgencia() {
 		return urgencia;
 	}
+	public int getTipo() {
+		return tipo;
+	}
+	
+	
 	
 }
