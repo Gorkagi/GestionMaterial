@@ -34,6 +34,7 @@ import dominio.ModeloTablaReservas;
 import dominio.Persona;
 import dominio.RecursoExtendido;
 import dominio.Reserva;
+import mailing.MailSender;
 import persistencia.DAOReservas;
 
 public class DialogoDatosReserva extends JDialog implements ActionListener,PropertyChangeListener{
@@ -219,7 +220,8 @@ public class DialogoDatosReserva extends JDialog implements ActionListener,Prope
 
 				JOptionPane.showMessageDialog(this, "Reserva añadida",
 						"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
-				
+				MailSender mSender = new MailSender();
+				mSender.sendMailValoracion(persona.getNombre(), persona.getEmail(), recurso.getNombre());
 				
 			}else{
 				if(recurso.getTipo().equals("Especial")) {
